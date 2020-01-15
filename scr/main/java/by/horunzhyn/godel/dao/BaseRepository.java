@@ -8,5 +8,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * Repository base for all entities in project
  */
 @NoRepositoryBean
-interface BaseRepository<E extends BaseEntity> extends JpaRepository<E, Long> {
+public interface BaseRepository<E extends BaseEntity> extends JpaRepository<E, Long> {
 }
