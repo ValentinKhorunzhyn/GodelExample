@@ -13,7 +13,8 @@ public class JobTitleService extends BaseServiceImpl<JobTitle, JobTitleRepositor
     private JobTitleRepository jobTitleRepository;
 
     @Override
-    protected JobTitleRepository getRepository() {
+    protected JobTitleRepository getRepository()
+    {
         return jobTitleRepository;
     }
 
