@@ -26,6 +26,34 @@ CREATE TABLE employee
     gender varchar(32),
     date_of_birth date
 );
+INSERT INTO department(title)
+    VALUES ('Adminictration'),('Manufacture');
+
+INSERT INTO job_title(title)
+VALUES('Director'),('Engineer'),('Secretery'),('Economist'),('Manager'),('Master'),('Worker');
+
+INSERT INTO employee(first_name, last_name, department_id, job_title_id, gender, date_of_birth)
+    VALUES ('Valentin','Khorunzhyn','1','1','Male','04-02-1987'),
+        ('Igor','Ryabchikov','1','2','Male','27-01-1965'),
+        ('Elena','Sokolova','1','3','Female','18-06-1990'),
+        ('Alexander','Morozov','1','4','Male','23-04-1982'),
+        ('Egor','Plutoev','1','5','Male','12-10-1985'),
+        ('Dmitry','Usov','1','5','Male','03-05-1991'),
+        ('Yuri','Dubenko','2','6','Male','07-12-1984'),
+        ('Sergey','Platonov','2','7','Male','14-03-1990'),
+        ('Vasiliy','Korgan','2','7','Male','21-12-1991');
+
+-- select employee.first_name,
+--     employee.last_name,
+--     employee.gender,
+--     employee.date_of_birth,
+--     department.title,
+--     job_title.title
+-- FROM employee,department,job_title
+-- WHERE employee.department_id = department.id
+--       AND employee.job_title_id = job_title.id;
+
+
 
 
 
