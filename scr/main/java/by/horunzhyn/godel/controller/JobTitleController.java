@@ -34,8 +34,8 @@ public class JobTitleController {
 
     @GetMapping("/job-titles/{id}")
     public JobTitleDto get(@PathVariable("id") Long id) {
-        JobTitle jobTitle = service.findOne(id).orElse(null);
-        return dtoMapper.mapEntityToDto(jobTitle);
+        JobTitle entity = service.findOne(id).orElse(null);
+        return dtoMapper.mapEntityToDto(entity);
     }
 
     @PostMapping("/job-titles")
@@ -47,8 +47,8 @@ public class JobTitleController {
     @PutMapping("/job-titles/{id}")
     public JobTitleDto update(@PathVariable("id") Long id,
                               @RequestBody JobTitleDto dto) {
-        JobTitle updatedJobTitle = service.update(id, dtoMapper.mapDtoToEntity(dto));
-        return dtoMapper.mapEntityToDto(updatedJobTitle);
+        JobTitle updatedEntity = service.update(id, dto.getTitle());
+        return dtoMapper.mapEntityToDto(updatedEntity);
     }
 
     @DeleteMapping("/job-titles/{id}")

@@ -14,7 +14,7 @@ public class JobTitleService extends BaseServiceImpl<JobTitle, JobTitleRepositor
     @Autowired
     private JobTitleRepository jobTitleRepository;
 
-    public JobTitle update (Long id, JobTitle newJobTitleData) {
+    public JobTitle update (Long id, String newTitle) {
         Optional<JobTitle> optional = findOne(id);
 
         if (!optional.isPresent()) {
@@ -22,7 +22,7 @@ public class JobTitleService extends BaseServiceImpl<JobTitle, JobTitleRepositor
         }
 
         JobTitle foundJobTitle = optional.get();
-        foundJobTitle.setTitle(newJobTitleData.getTitle());
+        foundJobTitle.setTitle(newTitle);
         return save(foundJobTitle);
     }
 
@@ -31,7 +31,5 @@ public class JobTitleService extends BaseServiceImpl<JobTitle, JobTitleRepositor
     {
         return jobTitleRepository;
     }
-
-
 
 }

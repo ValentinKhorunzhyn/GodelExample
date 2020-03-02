@@ -27,7 +27,6 @@ public abstract class BaseDtoMapper<E extends BaseEntity, Dto extends BaseDto> {
             return null;
         }
         E entity = createEntity();
-        entity.setId(dto.getId());
         fillEntity(entity, dto);
         return entity;
     }
