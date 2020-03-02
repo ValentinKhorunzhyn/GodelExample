@@ -1,4 +1,4 @@
-package by.horunzhyn.godel.service.Department;
+package by.horunzhyn.godel.service.department;
 
 import by.horunzhyn.godel.dao.DepartmentRepository;
 import by.horunzhyn.godel.entity.Department;
@@ -14,7 +14,6 @@ public class DepartmentService extends BaseServiceImpl<Department,DepartmentRepo
 
     @Override
     protected DepartmentRepository getRepository(){
-
         return DepartmentRepository;
     }
 

@@ -1,4 +1,4 @@
-package by.horunzhyn.godel.service.Employee;
+package by.horunzhyn.godel.service.employee;
 
 import by.horunzhyn.godel.dao.EmployeeRepository;
 import by.horunzhyn.godel.entity.Employee;
@@ -14,7 +14,6 @@ public class EmployeeService extends BaseServiceImpl<Employee,EmployeeRepository
 
     @Override
     protected EmployeeRepository getRepository(){
-
         return EmployeeRepository;
     }
 }

@@ -1,0 +1,60 @@
+package by.horunzhyn.godel.controller;
+
+import by.horunzhyn.godel.dto.jobtitle.JobTitleDto;
+import by.horunzhyn.godel.dto.jobtitle.JobTitleDtoMapper;
+import by.horunzhyn.godel.entity.JobTitle;
+import by.horunzhyn.godel.service.jobtitle.JobTitleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@RestController
+public class JobTitleController {
+
+    @Autowired
+    private JobTitleService service;
+
+    @Autowired
+    private JobTitleDtoMapper dtoMapper;
+
+    @GetMapping("/job-titles")
+    public List<JobTitleDto> getAll() {
+        List<JobTitle> entityList = service.findAll();
+
+//        List<JobTitleDto> dtoList = new ArrayList<>();
+//        for (JobTitle entity : entityList) {
+//            dtoList.add(dtoMapper.mapEntityToDto(entity));
+//        }
+
+        return entityList.stream().map(entity -> dtoMapper.mapEntityToDto(entity))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/job-titles/{id}")
+    public JobTitleDto get(@PathVariable("id") Long id) {
+        JobTitle jobTitle = service.findOne(id).orElse(null);
+        return dtoMapper.mapEntityToDto(jobTitle);
+    }
+
+    @PostMapping("/job-titles")
+    public JobTitleDto create(@RequestBody JobTitleDto dto) {
+        JobTitle savedEntity = service.save(dtoMapper.mapDtoToEntity(dto));
+        return dtoMapper.mapEntityToDto(savedEntity);
+    }
+
+    @PutMapping("/job-titles/{id}")
+    public JobTitleDto update(@PathVariable("id") Long id,
+                              @RequestBody JobTitleDto dto) {
+        JobTitle updatedJobTitle = service.update(id, dtoMapper.mapDtoToEntity(dto));
+        return dtoMapper.mapEntityToDto(updatedJobTitle);
+    }
+
+    @DeleteMapping("/job-titles/{id}")
+    public void delete(@PathVariable("id") Long id) {
+        service.delete(id);
+    }
+
+
+}
