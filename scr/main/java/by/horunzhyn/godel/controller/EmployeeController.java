@@ -8,8 +8,8 @@ import by.horunzhyn.godel.service.employee.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class EmployeeController {
@@ -24,13 +24,12 @@ public class EmployeeController {
     public List<EmployeeDto> getAll() {
         List<Employee> entityList = service.findAll();
 
-//        List<JobTitleDto> dtoList = new ArrayList<>();
-//        for (JobTitle entity : entityList) {
-//            dtoList.add(dtoMapper.mapEntityToDto(entity));
-//        }
+        List<EmployeeDto> dtoList = new ArrayList<>();
+        for (Employee entity : entityList) {
+            dtoList.add(dtoMapper.mapEntityToDto(entity));
+        }
 
-        return entityList.stream().map(entity -> dtoMapper.mapEntityToDto(entity))
-                .collect(Collectors.toList());
+        return dtoList;
     }
 
     @GetMapping("/employees/{id}")

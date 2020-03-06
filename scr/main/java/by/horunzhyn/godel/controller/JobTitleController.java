@@ -7,8 +7,8 @@ import by.horunzhyn.godel.service.jobtitle.JobTitleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 public class JobTitleController {
@@ -23,13 +23,12 @@ public class JobTitleController {
     public List<JobTitleDto> getAll() {
         List<JobTitle> entityList = service.findAll();
 
-//        List<JobTitleDto> dtoList = new ArrayList<>();
-//        for (JobTitle entity : entityList) {
-//            dtoList.add(dtoMapper.mapEntityToDto(entity));
-//        }
+        List<JobTitleDto> dtoList = new ArrayList<>();
+        for (JobTitle entity : entityList) {
+            dtoList.add(dtoMapper.mapEntityToDto(entity));
+        }
 
-        return entityList.stream().map(entity -> dtoMapper.mapEntityToDto(entity))
-                .collect(Collectors.toList());
+        return dtoList;
     }
 
     @GetMapping("/job-titles/{id}")
